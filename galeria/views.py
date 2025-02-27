@@ -3,7 +3,8 @@ from galeria.models import Fotografia
 
 
 def index(request):
-    fotografias = Fotografia.objects.all()
+    # Caso adicione um - antes do data_fotografia, ele inverte o order_by
+    fotografias = Fotografia.objects.order_by("data_fotografia").filter(publicada=True)
     return render(request, 'galeria/index.html', {'cards': fotografias})
 
 
